@@ -1,7 +1,9 @@
 import createGrid from './createGrid';
 
+const newGrid = createGrid();
+
 test('creates the appropriate grid', () => {
-    expect(createGrid()).toEqual([
+    expect(newGrid).toEqual([
         ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10'],
         ['b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'b8', 'b9', 'b10'],
         ['c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10'],
@@ -13,4 +15,8 @@ test('creates the appropriate grid', () => {
         ['i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', 'i8', 'i9', 'i10'],
         ['j1', 'j2', 'j3', 'j4', 'j5', 'j6', 'j7', 'j8', 'j9', 'j10'],
     ]);
+});
+
+test('locate coordinates', () => {
+    expect(newGrid[0][0]).toBe('a1');
 });
