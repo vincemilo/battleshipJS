@@ -1,63 +1,77 @@
 import createGrid from './createGrid';
 import Ship from './ship';
+import translateCoords from './translateCoords';
 
 export default class Gameboard {
     constructor() {
         this.grid = createGrid();
-        this.missedAttacks = [];
+        this.missedAttacks = {};
+        this.hitAttacks = {};
+        this.shipsSunk = 0;
         this.allSunk = false;
-        this.player1ships = [];
-        this.player2ships = [];
+        this.ships = [];
     }
 
     showGrid() {
         return this.grid;
     }
 
-    showP1ships() {
-        return this.player1ships;
+    checkAllSunk() {
+        if (this.shipsSunk === 5) this.allSunk = true;
     }
 
     placeShips() {
         const ships = [
-            {
-                name: 'carrier',
-                length: 5,
-                coords: ['a1', 'a2', 'a3', 'a4', 'a5'],
-            },
-            {
-                name: 'battleship',
-                length: 4,
-                coords: ['b1', 'b2', 'b3', 'b4'],
-            },
-            {
-                name: 'destroyer',
-                length: 3,
-                coords: ['c1', 'c2', 'c3'],
-            },
-            {
-                name: 'submarine',
-                length: 3,
-                coords: ['d1', 'd2', 'd3'],
-            },
+            // {
+            //     name: 'carrier',
+            //     length: 5,
+            //     coords: { a1: null, a2: null, a3: null, a4: null, a5: null },
+            // },
+            // {
+            //     name: 'battleship',
+            //     length: 4,
+            //     coords: { b1: null, b2: null, b3: null, b4: null },
+            // },
+            // {
+            //     name: 'destroyer',
+            //     length: 3,
+            //     coords: { c1: null, c2: null, c3: null },
+            // },
+            // {
+            //     name: 'submarine',
+            //     length: 3,
+            //     coords: { d1: null, d2: null, d3: null },
+            // },
             {
                 name: 'patrol boat',
                 length: 2,
-                coords: ['e1', 'e2'],
+                coords: { e1: null, e2: null },
             },
         ];
 
         ships.forEach((element) => {
             const ship = new Ship(element.name, element.length, element.coords);
-            this.player1ships.push(ship);
+            this.ships.push(ship);
+            Object.keys(ship.coords).forEach((e) => this.occupy(e));
         });
     }
 
+    occupy(coords) {
+        const translated = translateCoords(coords);
+        this.grid[translated[0]][translated[1]].occupied = true;
+    }
+
     receiveAttack(attackCoords) {
-        this.player1ships.forEach((e) => {
-            if (e.coords.includes(attackCoords)) {
-                return true;
+        for (let i = 0; i < this.ships.length; i += 1) {
+            const ship = this.ships[i];
+            if (attackCoords in ship.coords) {
+                ship.hit();
+                if (ship.sunk) {
+                    this.shipsSunk += 1;
+                    this.checkAllSunk();
+                }
+                this.hitAttacks[attackCoords] = null;
             }
-        });
+        }
     }
 }
