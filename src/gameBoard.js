@@ -62,15 +62,20 @@ export default class Gameboard {
     }
 
     receiveAttack(attackCoords) {
-        for (let i = 0; i < this.ships.length; i += 1) {
-            const ship = this.ships[i];
-            if (attackCoords in ship.coords) {
-                ship.hit();
-                if (ship.sunk) {
-                    this.shipsSunk += 1;
-                    this.checkAllSunk();
+        const translated = translateCoords(attackCoords);
+        if (this.grid[translated[0]][translated[1]].occupied === false) {
+            this.missedAttacks[attackCoords] = null;
+        } else {
+            for (let i = 0; i < this.ships.length; i += 1) {
+                const ship = this.ships[i];
+                if (attackCoords in ship.coords) {
+                    ship.hit();
+                    if (ship.sunk) {
+                        this.shipsSunk += 1;
+                        this.checkAllSunk();
+                    }
+                    this.hitAttacks[attackCoords] = null;
                 }
-                this.hitAttacks[attackCoords] = null;
             }
         }
     }

@@ -14,9 +14,10 @@ test('checks receive attack function', () => {
     expect(board.shipsSunk).toBe(1);
 });
 
-// test('checks receive attack function', () => {
-//     expect(board.missedAttacks).toEqual(['e3']);
-// });
+test('checks receive attack function', () => {
+    expect(board.missedAttacks).toEqual({ e3: null });
+});
+
 board.occupy('a1');
 test('checks occupy function', () => {
     expect(board.grid[0][0].occupied).toBe(true);
