@@ -22,26 +22,26 @@ export default class Gameboard {
 
     placeShips() {
         const ships = [
-            // {
-            //     name: 'carrier',
-            //     length: 5,
-            //     coords: { a1: null, a2: null, a3: null, a4: null, a5: null },
-            // },
-            // {
-            //     name: 'battleship',
-            //     length: 4,
-            //     coords: { b1: null, b2: null, b3: null, b4: null },
-            // },
-            // {
-            //     name: 'destroyer',
-            //     length: 3,
-            //     coords: { c1: null, c2: null, c3: null },
-            // },
-            // {
-            //     name: 'submarine',
-            //     length: 3,
-            //     coords: { d1: null, d2: null, d3: null },
-            // },
+            {
+                name: 'carrier',
+                length: 5,
+                coords: { a1: null, a2: null, a3: null, a4: null, a5: null },
+            },
+            {
+                name: 'battleship',
+                length: 4,
+                coords: { b1: null, b2: null, b3: null, b4: null },
+            },
+            {
+                name: 'destroyer',
+                length: 3,
+                coords: { c1: null, c2: null, c3: null },
+            },
+            {
+                name: 'submarine',
+                length: 3,
+                coords: { d1: null, d2: null, d3: null },
+            },
             {
                 name: 'patrol boat',
                 length: 2,
@@ -52,6 +52,7 @@ export default class Gameboard {
         ships.forEach((element) => {
             const ship = new Ship(element.name, element.length, element.coords);
             this.ships.push(ship);
+            // takes ship coords and applies them to board
             Object.keys(ship.coords).forEach((e) => this.occupy(e));
         });
     }
