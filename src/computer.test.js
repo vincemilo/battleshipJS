@@ -112,6 +112,6 @@ test('removes previous hits from options', () => {
     expect(newComp.removeCoords('a1')).toEqual({ a1: null });
 });
 
-test('check compAttack', () => {
-    expect(newComp.compAttack()).toBe('');
+test('checkAdjacent returns a valid adjacent square', () => {
+    expect(newComp.checkAdjacent(['b2'])).toEqual('a2');
 });
