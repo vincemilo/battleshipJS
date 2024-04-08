@@ -11,7 +11,7 @@ const content = document.createElement('div');
 content.id = 'content';
 const body = document.querySelector('body');
 content.appendChild(header());
-content.appendChild(main(player2.gameBoard.grid, player2.gameBoard.grid));
+content.appendChild(main(player1, player2));
 body.appendChild(content);
 
 gameLoop(player1, player2);

@@ -7,17 +7,17 @@ export default class Gameboard {
         this.grid = createGrid();
         this.missedAttacks = {};
         this.hitAttacks = {};
-        this.shipsSunk = 0;
+        this.shipsSunk = '';
         this.allSunk = false;
         this.ships = [];
     }
 
-    showGrid() {
-        return this.grid;
+    resetShipsSunk() {
+        this.shipsSunk = '';
     }
 
-    checkAllSunk() {
-        if (this.shipsSunk === 5) this.allSunk = true;
+    showGrid() {
+        return this.grid;
     }
 
     placeShips() {
@@ -63,19 +63,13 @@ export default class Gameboard {
     }
 
     receiveAttack(attackCoords) {
-        const translated = translateCoords(attackCoords);
-        if (this.grid[translated[0]][translated[1]].occupied === false) {
-            this.missedAttacks[attackCoords] = null;
-        } else {
-            for (let i = 0; i < this.ships.length; i += 1) {
-                const ship = this.ships[i];
-                if (attackCoords in ship.coords) {
-                    ship.hit();
-                    if (ship.sunk) {
-                        this.shipsSunk += 1;
-                        this.checkAllSunk();
-                    }
-                    this.hitAttacks[attackCoords] = null;
+        for (let i = 0; i < this.ships.length; i += 1) {
+            const ship = this.ships[i];
+            if (attackCoords in ship.coords) {
+                ship.hit();
+                if (ship.sunk) {
+                    this.shipsSunk = ship.name;
+                    if (this.shipsSunk.length === 5) this.allSunk = true;
                 }
             }
         }

@@ -6,7 +6,8 @@ body {
         sans-serif;
 }
 
-header {
+header,
+.status {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,9 +18,10 @@ header {
 .cell {
     border: 1px solid black;
     padding: 8px;
+    background-color: aqua;
 }
 
-.enemy-grid {
+.player2-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
 }
