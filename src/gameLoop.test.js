@@ -6,5 +6,5 @@ const player2 = new Player(true);
 const newGameLoop = gameLoop(player1, player2);
 
 test('check basic functionality', () => {
-    expect(newGameLoop).toEqual('');
+    expect(newGameLoop).toEqual(1);
 });

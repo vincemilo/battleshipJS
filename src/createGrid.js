@@ -6,7 +6,11 @@ export default function createGrid() {
     for (let i = 0; i < rows; i += 1) {
         grid[i] = [];
         for (let j = 0; j < colums; j += 1) {
-            grid[i][j] = { coords: letter[i] + (j + 1), occupied: false };
+            grid[i][j] = {
+                name: letter[i] + (j + 1),
+                coords: [i, j],
+                occupied: false,
+            };
         }
     }
     return grid;

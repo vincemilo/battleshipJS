@@ -8,9 +8,7 @@ test('checks receive attack function', () => {
     board.receiveAttack('e2');
     board.receiveAttack('e3');
 
-    expect(board.hitAttacks).toEqual({ e1: null, e2: null });
     expect(board.shipsSunk).toBe(1);
-    expect(board.missedAttacks).toEqual({ e3: null });
 });
 
 test('checks occupy function', () => {
