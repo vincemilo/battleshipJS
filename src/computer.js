@@ -51,7 +51,7 @@ export default class Computer {
 
     compAttack() {
         const hitCoords = Object.keys(this.successAttacks);
-        if (hitCoords.length) this.checkAdjacent(hitCoords);
+        if (hitCoords.length) return this.checkAdjacent(hitCoords);
         const keys = Object.keys(this.coords);
         return keys[Math.floor(Math.random() * keys.length)];
     }

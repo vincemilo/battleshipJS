@@ -8,7 +8,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Image Slider',
+            title: 'Battleship',
         }),
         new MiniCssExtractPlugin(),
     ],
