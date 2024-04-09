@@ -7,13 +7,14 @@ export default class Gameboard {
         this.grid = createGrid();
         this.missedAttacks = {};
         this.hitAttacks = {};
-        this.shipsSunk = '';
+        this.shipsSunk = 0;
+        this.latestSunk = '';
         this.allSunk = false;
         this.ships = [];
     }
 
     resetShipsSunk() {
-        this.shipsSunk = '';
+        this.latestSunk = '';
     }
 
     showGrid() {
@@ -68,8 +69,9 @@ export default class Gameboard {
             if (attackCoords in ship.coords) {
                 ship.hit();
                 if (ship.sunk) {
-                    this.shipsSunk = ship.name;
-                    if (this.shipsSunk.length === 5) this.allSunk = true;
+                    this.latestSunk = ship.name;
+                    this.shipsSunk += 1;
+                    if (this.shipsSunk === 5) this.allSunk = true;
                 }
             }
         }

@@ -10,9 +10,13 @@ export default class Player {
     attack(cell) {
         if (cell.occupied === false) {
             this.gameBoard.missedAttacks[cell.name] = null;
-            return false;
+            // 3 different returns, miss, hit, or already attacked
+            return 0;
+        }
+        if (cell.name in this.gameBoard.hitAttacks) {
+            return 1;
         }
         this.gameBoard.hitAttacks[cell.name] = null;
-        return true;
+        return 2;
     }
 }
