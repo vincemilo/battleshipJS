@@ -1,20 +1,16 @@
-import translateCoords from './translateCoords';
 import generateOptions from './generateOptions';
-import reverseTranslate from './reverseTranslate';
+import translateCoords from './translateCoords';
 
 export default class Computer {
     constructor(gameboard) {
         this.coords = {};
         this.gameboard = gameboard;
-        this.prevAttacks = {};
-        this.successAttacks = {};
     }
 
     createCoords() {
-        const letter = 'abcdefghij';
-        for (let i = 0; i < letter.length; i += 1) {
-            for (let j = 1; j < letter.length + 1; j += 1) {
-                this.coords[letter[i] + j] = null;
+        for (let i = 0; i < 10; i += 1) {
+            for (let j = 0; j < 10; j += 1) {
+                this.coords[[i, j]] = null;
             }
         }
     }
@@ -23,36 +19,39 @@ export default class Computer {
         return this.coords;
     }
 
-    // remove used coords from options
-    removeCoords(usedCoords, success = false) {
-        if (success) this.successAttacks[usedCoords] = null;
-        this.prevAttacks[usedCoords] = null;
-        delete this.coords[usedCoords];
-        return this.prevAttacks;
-    }
-
     // check if options have already been used
-    validateAttack(options) {
+    validateAttack(options, missCoords) {
         for (let i = 0; i < options.length; i += 1) {
-            if (!(options[i] in this.prevAttacks)) return options[i];
+            if (!(options[i] in missCoords)) return options[i];
         }
         return false;
     }
 
-    checkAdjacent(hitCoords) {
+    checkAdjacent(hitCoords, missCoords) {
         let adjSquare = '';
         hitCoords.forEach((e) => {
-            const translatedCoords = translateCoords(e);
-            const options = generateOptions(translatedCoords);
-            adjSquare = this.validateAttack(options);
+            const translated = translateCoords(e);
+            const options = generateOptions(translated);
+            adjSquare = this.validateAttack(options, missCoords);
         });
-        return reverseTranslate(adjSquare);
+        console.log(adjSquare);
+        return adjSquare;
     }
 
-    compAttack() {
-        const hitCoords = Object.keys(this.successAttacks);
-        if (hitCoords.length) return this.checkAdjacent(hitCoords);
-        const keys = Object.keys(this.coords);
-        return keys[Math.floor(Math.random() * keys.length)];
+    compAttack(player1, player2) {
+        let attackCoords = [];
+        const hitCoords = Object.keys(player2.gameBoard.hitAttacks);
+        const missCoords = Object.keys(player2.gameBoard.missedAttacks);
+        if (hitCoords.length) {
+            attackCoords = this.checkAdjacent(hitCoords, missCoords);
+        } else {
+            const keys = Object.keys(this.coords);
+            const randomCoords = keys[Math.floor(Math.random() * keys.length)];
+            attackCoords = [randomCoords[0], randomCoords[1]];
+        }
+        const enemyCell =
+            player1.gameBoard.grid[attackCoords[0]][attackCoords[1]];
+        delete this.coords[attackCoords];
+        return player2.attack(enemyCell);
     }
 }

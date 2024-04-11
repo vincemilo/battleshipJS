@@ -4,7 +4,7 @@ const compPlayer = new Player(true);
 const humanPlayer = new Player();
 
 test('check computer player creation', () => {
-    expect(compPlayer.comp.successAttacks).toEqual({});
+    expect(compPlayer.comp.coords).toEqual({});
 });
 
 test('check attack function', () => {
