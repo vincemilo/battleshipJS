@@ -1,5 +1,4 @@
-import generateOptions from './generateOptions';
-import translateCoords from './translateCoords';
+import checkAdjacent from './checkAdjacent';
 
 export default class Computer {
     constructor(gameboard) {
@@ -19,31 +18,12 @@ export default class Computer {
         return this.coords;
     }
 
-    // check if options have already been used
-    validateAttack(options, missCoords) {
-        for (let i = 0; i < options.length; i += 1) {
-            if (!(options[i] in missCoords)) return options[i];
-        }
-        return false;
-    }
-
-    checkAdjacent(hitCoords, missCoords) {
-        let adjSquare = '';
-        hitCoords.forEach((e) => {
-            const translated = translateCoords(e);
-            const options = generateOptions(translated);
-            adjSquare = this.validateAttack(options, missCoords);
-        });
-        console.log(adjSquare);
-        return adjSquare;
-    }
-
     compAttack(player1, player2) {
         let attackCoords = [];
         const hitCoords = Object.keys(player2.gameBoard.hitAttacks);
         const missCoords = Object.keys(player2.gameBoard.missedAttacks);
         if (hitCoords.length) {
-            attackCoords = this.checkAdjacent(hitCoords, missCoords);
+            attackCoords = checkAdjacent(hitCoords, missCoords);
         } else {
             const keys = Object.keys(this.coords);
             const randomCoords = keys[Math.floor(Math.random() * keys.length)];

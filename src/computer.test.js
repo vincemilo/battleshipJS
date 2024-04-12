@@ -109,14 +109,6 @@ test('creates all coords', () => {
     });
 });
 
-// test('removes previous hits from options', () => {
-//     expect(newComp.removeCoords([1, 1])).toEqual({ '1,1': null });
-// });
-
-// test('checkAdjacent returns a valid adjacent square', () => {
-//     expect(newComp.checkAdjacent([[1, 1]])).toEqual([0, 1]);
-// });
-
 test('comp attack returns attacks random coords', () => {
     const newHuman = new Player();
     const comp2 = new Player(true);
