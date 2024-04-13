@@ -4,6 +4,7 @@ export default class Computer {
     constructor(gameboard) {
         this.coords = {};
         this.gameboard = gameboard;
+        this.createCoords();
     }
 
     createCoords() {
@@ -27,7 +28,7 @@ export default class Computer {
         } else {
             const keys = Object.keys(this.coords);
             const randomCoords = keys[Math.floor(Math.random() * keys.length)];
-            attackCoords = [randomCoords[0], randomCoords[1]];
+            attackCoords = [randomCoords[0], randomCoords[2]];
         }
         const enemyCell =
             player1.gameBoard.grid[attackCoords[0]][attackCoords[1]];

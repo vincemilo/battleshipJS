@@ -6,8 +6,13 @@ body {
         sans-serif;
 }
 
+header {
+    font-size: 2rem;
+}
+
 header,
-.status {
+.status,
+.info {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +26,9 @@ header,
     background-color: aqua;
 }
 
-.player2-grid {
+.player2-grid,
+.player1-grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    padding: 4px 8px;
 }

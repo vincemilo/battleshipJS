@@ -11,6 +11,7 @@ export default class Gameboard {
         this.latestSunk = '';
         this.allSunk = false;
         this.ships = [];
+        this.placeShips();
     }
 
     resetShipsSunk() {

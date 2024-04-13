@@ -8,6 +8,7 @@ export default class Player {
     }
 
     attack(cell) {
+        // console.log(cell);
         if (cell.occupied === false) {
             this.gameBoard.missedAttacks[cell.name] = null;
             // 3 different returns, miss, hit, or already attacked

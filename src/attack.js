@@ -1,3 +1,6 @@
+import endTurn from './endTurn';
+
+// takes a clicked cell and updates the board and status bar accordingly as well as ends the turn
 export default function attack(player1, player2, e) {
     const status = document.querySelector('.status');
     const cell = document.getElementById(e.name);
@@ -19,4 +22,6 @@ export default function attack(player1, player2, e) {
         status.innerText = 'Miss!';
         cell.style.backgroundColor = 'white';
     }
+
+    endTurn(player1, player2);
 }
