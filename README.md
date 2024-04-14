@@ -1,30 +1,34 @@
-# jsTodo
+# BattleshipJS
 
-Image Carousel app using Webpack
+Battleship Game using test driven development
 
-Assignment: https://www.theodinproject.com/lessons/javascript-dynamic-user-interface-interactions
+Live preview: TBD
+
+Assignment: https://www.theodinproject.com/lessons/javascript-battleship
 
 ## Features:
 
-- Next and previous buttons to advance the image, smooth transitions using css
-
-- Navigation dots below the window that link to each individual image
-
-- Timeout which advances the slides every 5 seconds
-
+-   Ship class keeps track of length, hits, and if sunk
+-   Gameboard class places ships at specific coordinates, receiveAttack function determines if ship is hit or not, keeps track of missed attacks, reports if all ships sunk
+-   Player class takes turns attacking the enemy Gameboard
+-   Computer class takes into account missed attacks and hit attacks and attacks adjacently as appropriate
+-   Human player attacks via click, computer attacks via checking previous hits and misses and attacking adjacently or randomly as appropriate
 
 ### Process
 
--   Configuring ESLint and Prettier with VSCode
+-   Set up of initial classes, functions, and 2d grid array using test driven development
 
--   Tinkering with webpack production/development modes and plugins
+-   Created translateCoords to take letter/number coordinates and relate them to the grid array
 
--   Added display window with images in an array along with forward and next nav buttons with logic to advance the image and update the window
+-   checkAdjacent function takes hit coords and selects an adjacent square for the computer
 
--   Added nav dots below image that update as image scrolls. Put these in an image array that correspond to the image array index
+-   Created initial DOM UI for enemy gameboard and event listener to allow clicks to attack
 
--   Broke up functions and arrays into modules, probably should have done this first as there were some issues getting them to play nicely again once sepaerated.
+-   Teased out functions into separate modules and/or deleted unncessary or redundant functions as able
 
--   Made the nav dots clickable by assigning each image an id and then an event listener that pulls up that image from its respective array. Had a bug where I didn't realize target.id was a string and had to convert it back to a number.
+-   Bug where computer kept attacking same target after a miss following a hit fixed by adding hit attacks to previous attacks
 
--   In order to create the automatic advance feature had to create an index module that kept track of where the pointer was at any given time so that it would advance properly even if another navdot was selected.
+#### To Do
+
+-   Add 2 human player option
+-   Drag and drop placement of ships
