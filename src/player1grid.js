@@ -1,4 +1,4 @@
-export default function player1grid(player1, player2) {
+export default function player1grid(player1) {
     const container = document.createElement('div');
     const p1info = document.createElement('div');
     p1info.innerText = 'Your ships';
@@ -7,15 +7,17 @@ export default function player1grid(player1, player2) {
 
     const div = document.createElement('div');
     div.className = 'player1-grid';
-
     p1grid.forEach((element) => {
         element.forEach((e) => {
             const cell = document.createElement('div');
             cell.className = 'cell';
-            cell.id = e.name;
+            cell.id = e.coords;
+            if (e.coords in player1.gameBoard.shipLocations)
+                cell.style.backgroundColor = 'grey';
             div.appendChild(cell);
         });
     });
+
     container.appendChild(p1info);
     container.appendChild(div);
     return container;

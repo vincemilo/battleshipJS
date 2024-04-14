@@ -1,4 +1,6 @@
 import checkAdjacent from './checkAdjacent';
+import attack from './attack';
+import randomAttack from './randomAttack';
 
 export default class Computer {
     constructor(gameboard) {
@@ -22,17 +24,20 @@ export default class Computer {
     compAttack(player1, player2) {
         let attackCoords = [];
         const hitCoords = Object.keys(player2.gameBoard.hitAttacks);
-        const missCoords = Object.keys(player2.gameBoard.missedAttacks);
+        const missCoords = player2.gameBoard.missedAttacks;
         if (hitCoords.length) {
-            attackCoords = checkAdjacent(hitCoords, missCoords);
+            const adjacent = checkAdjacent(hitCoords, missCoords);
+            if (adjacent) {
+                attackCoords = adjacent;
+            } else {
+                attackCoords = randomAttack(this.coords);
+            }
         } else {
-            const keys = Object.keys(this.coords);
-            const randomCoords = keys[Math.floor(Math.random() * keys.length)];
-            attackCoords = [randomCoords[0], randomCoords[2]];
+            attackCoords = randomAttack(this.coords);
         }
         const enemyCell =
             player1.gameBoard.grid[attackCoords[0]][attackCoords[1]];
         delete this.coords[attackCoords];
-        return player2.attack(enemyCell);
+        attack(player2, player1, enemyCell);
     }
 }

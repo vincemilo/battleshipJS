@@ -1,7 +1,6 @@
 import Gameboard from './gameBoard';
 
 const board = new Gameboard();
-board.placeShips();
 
 test('checks receive attack function', () => {
     board.receiveAttack('e1');

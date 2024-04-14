@@ -11,6 +11,7 @@ export default class Gameboard {
         this.latestSunk = '';
         this.allSunk = false;
         this.ships = [];
+        this.shipLocations = {};
         this.placeShips();
     }
 
@@ -61,6 +62,7 @@ export default class Gameboard {
 
     occupy(coords) {
         const translated = translateCoords(coords);
+        this.shipLocations[translated] = null;
         this.grid[translated[0]][translated[1]].occupied = true;
     }
 
