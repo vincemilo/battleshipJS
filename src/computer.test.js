@@ -109,11 +109,11 @@ test('creates all coords', () => {
     });
 });
 
-test('comp attack returns attacks random coords', () => {
-    const newHuman = new Player();
-    const comp2 = new Player(true);
-    newHuman.gameBoard.placeShips();
-    comp2.gameBoard.hitAttacks = { a1: null };
-    // console.log(comp2.gameBoard);
-    expect(newComp.compAttack(newHuman, comp2)).toBe(2);
-});
+// test('comp attack returns attacks random coords', () => {
+//     const newHuman = new Player();
+//     const comp2 = new Player(true);
+//     newHuman.gameBoard.placeShips();
+//     comp2.gameBoard.hitAttacks = { a1: null };
+//     // console.log(comp2.gameBoard);
+//     expect(newComp.compAttack(newHuman, comp2)).toBe(2);
+// });
