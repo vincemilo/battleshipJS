@@ -1,7 +1,7 @@
-import checkLength from './checkLength';
+import randomLocations from './randomLocations';
 
 test('returns horiz/vertical ship coords based on length', () => {
-    expect(checkLength([1, 1], {}, 2)).toEqual({
+    expect(randomLocations([1, 1], {}, 2)).toEqual({
         horizOptions: [
             [1, 2],
             [1, 0],
@@ -12,7 +12,7 @@ test('returns horiz/vertical ship coords based on length', () => {
         ],
     });
 
-    expect(checkLength([1, 1], { '2,1': null }, 2)).toEqual({
+    expect(randomLocations([1, 1], { '2,1': null }, 2)).toEqual({
         horizOptions: [
             [1, 2],
             [1, 0],
@@ -20,7 +20,7 @@ test('returns horiz/vertical ship coords based on length', () => {
         vertOptions: [[0, 1]],
     });
 
-    expect(checkLength([0, 0], {}, 5)).toEqual({
+    expect(randomLocations([0, 0], {}, 5)).toEqual({
         horizOptions: [
             [0, 1],
             [0, 2],
