@@ -1,17 +1,18 @@
 import Gameboard from './gameBoard';
+import Ship from './ship';
 
 const board = new Gameboard();
+board.ships.push(new Ship('patrol boat', 2, { '0,0': null, '0,1': null }));
 
 test('checks receive attack function', () => {
-    board.receiveAttack('e1');
-    board.receiveAttack('e2');
-    board.receiveAttack('e3');
+    board.receiveAttack([0, 0]);
+    board.receiveAttack([0, 1]);
 
     expect(board.shipsSunk).toBe(1);
 });
 
 test('checks occupy function', () => {
-    board.occupy('a1');
+    board.occupy([0, 0]);
     expect(board.grid[0][0].occupied).toBe(true);
     expect(board.grid[0][9].occupied).toBe(false);
 });
@@ -20,28 +21,37 @@ test('checks allSunk function', () => {
     const occupiedCoords = [];
     const ships = [
         {
-            name: 'carrier',
+            name: 'cruiser',
             length: 5,
-            coords: { a1: null, a2: null, a3: null, a4: null, a5: null },
+            coords: {
+                '6,2': null,
+                '6,3': null,
+                '6,4': null,
+                '6,5': null,
+                '6:6': null,
+            },
         },
         {
             name: 'battleship',
             length: 4,
-            coords: { b1: null, b2: null, b3: null, b4: null },
-        },
-        {
-            name: 'destroyer',
-            length: 3,
-            coords: { c1: null, c2: null, c3: null },
+            coords: { '7,2': null, '7,3': null, '7,4': null, '7,5': null },
         },
         {
             name: 'submarine',
             length: 3,
-            coords: { d1: null, d2: null, d3: null },
+            coords: { '2,2': null, '3,2': null, '4,2': null },
+        },
+        {
+            name: 'destroyer',
+            length: 3,
+            coords: { '5,2': null, '5,3': null, '5,4': null },
         },
     ];
 
-    ships.forEach((e) => occupiedCoords.push(...Object.keys(e.coords)));
+    ships.forEach((e) => {
+        board.ships.push(new Ship(e.name, e.length, e.coords));
+        occupiedCoords.push(...Object.keys(e.coords));
+    });
     occupiedCoords.forEach((e) => board.receiveAttack(e));
     expect(board.allSunk).toBe(true);
 });

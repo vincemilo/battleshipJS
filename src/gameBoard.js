@@ -1,6 +1,6 @@
 import createGrid from './createGrid';
 import Ship from './ship';
-import translateCoords from './translateCoords';
+import shipRandomizer from './shipRandomizer';
 
 export default class Gameboard {
     constructor() {
@@ -12,7 +12,7 @@ export default class Gameboard {
         this.allSunk = false;
         this.ships = [];
         this.shipLocations = {};
-        this.placeShips();
+        // this.placeShips();
     }
 
     resetShipsSunk() {
@@ -28,42 +28,42 @@ export default class Gameboard {
             {
                 name: 'carrier',
                 length: 5,
-                coords: { a1: null, a2: null, a3: null, a4: null, a5: null },
+                coords: shipRandomizer(5, this),
             },
             {
                 name: 'battleship',
                 length: 4,
-                coords: { b1: null, b2: null, b3: null, b4: null },
+                coords: shipRandomizer(4, this),
             },
-            {
-                name: 'destroyer',
-                length: 3,
-                coords: { c1: null, c2: null, c3: null },
-            },
-            {
-                name: 'submarine',
-                length: 3,
-                coords: { d1: null, d2: null, d3: null },
-            },
-            {
-                name: 'patrol boat',
-                length: 2,
-                coords: { e1: null, e2: null },
-            },
+            // {
+            //     name: 'destroyer',
+            //     length: 3,
+            //     coords: shipRandomizer(3),
+            // },
+            // {
+            //     name: 'submarine',
+            //     length: 3,
+            //     coords: shipRandomizer(3),
+            // },
+            // {
+            //     name: 'patrol boat',
+            //     length: 2,
+            //     coords: shipRandomizer(2),
+            // },
         ];
 
         ships.forEach((element) => {
             const ship = new Ship(element.name, element.length, element.coords);
             this.ships.push(ship);
+            // console.log(ship.coords);
             // takes ship coords and applies them to board
-            Object.keys(ship.coords).forEach((e) => this.occupy(e));
+            // Object.keys(ship.coords).forEach((e) => this.occupy(e));
         });
     }
 
     occupy(coords) {
-        const translated = translateCoords(coords);
-        this.shipLocations[translated] = null;
-        this.grid[translated[0]][translated[1]].occupied = true;
+        this.shipLocations[coords] = null;
+        this.grid[coords[0]][coords[1]].occupied = true;
     }
 
     receiveAttack(attackCoords) {

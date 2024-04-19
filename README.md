@@ -18,15 +18,15 @@ Assignment: https://www.theodinproject.com/lessons/javascript-battleship
 
 -   Set up of initial classes, functions, and 2d grid array using test driven development
 
--   Created translateCoords to take letter/number coordinates and relate them to the grid array
+-   Created translateCoords to take letter/number coordinates and relate them to the grid array, later deemed unncessary as raw coords was easier to use for computer AI
 
 -   checkAdjacent function takes hit coords and selects an adjacent square for the computer
 
 -   Created initial DOM UI for enemy gameboard and event listener to allow clicks to attack
 
--   Teased out functions into separate modules and/or deleted unncessary or redundant functions as able
-
 -   Bug where computer kept attacking same target after a miss following a hit fixed by adding hit attacks to previous attacks
+
+-   Bug with shipRandomizer that was causing collisions, requiring a refactor of the entire ship placement and targeting system as well as corresponding tests
 
 #### To Do
 

@@ -16,6 +16,6 @@ test('check attack function', () => {
     };
     humanPlayer.attack(compCell);
     humanPlayer.attack(compCell2);
-    expect(humanPlayer.gameBoard.hitAttacks).toEqual({ a1: null });
-    expect(humanPlayer.gameBoard.missedAttacks).toEqual({ j10: null });
+    expect(humanPlayer.gameBoard.hitAttacks).toEqual({ '0,0': null });
+    expect(humanPlayer.gameBoard.missedAttacks).toEqual({ '9,9': null });
 });
