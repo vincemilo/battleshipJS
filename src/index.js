@@ -14,4 +14,4 @@ content.appendChild(header());
 content.appendChild(main(player1, player2));
 body.appendChild(content);
 
-gameLoop(player1, player2);
+// gameLoop(player1, player2);

@@ -41,5 +41,5 @@ export default function randomLocations(coords, usedCoords, length) {
     }
     const options = [vertOptions, horizOptions];
     const coinToss = Math.floor(Math.random() * 2);
-    return checkLength(options[coinToss], 2);
+    return checkLength(options[coinToss], length);
 }
