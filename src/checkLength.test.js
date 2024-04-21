@@ -1,10 +1,36 @@
 import checkLength from './checkLength';
-import randomLocations from './randomLocations';
 
-const coords = randomLocations([0, 0], { '0,1': null }, 2);
-// console.log(checkLength(coords.vertOptions, coords.horizOptions));
+test('returns an array of options of the correct length', () =>
+    expect(
+        checkLength(
+            [
+                [0, 0],
+                [0, 1],
+                [0, 3],
+            ],
+            2
+        )
+    ).toEqual([
+        [0, 0],
+        [0, 1],
+    ]));
 
-test('returns an array of vertical or horizontal options', () =>
-    expect(checkLength(coords.vertOptions, coords.horizOptions)).toEqual([
-        [1, 0],
+test('returns an array of options of the correct length', () =>
+    expect(
+        checkLength(
+            [
+                [0, 0],
+                [0, 1],
+                [0, 2],
+                [0, 3],
+                [0, 4],
+            ],
+            5
+        )
+    ).toEqual([
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 4],
     ]));

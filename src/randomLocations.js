@@ -1,8 +1,10 @@
 // checks to see if ship length could fit in given coordinates range
 
+import checkLength from './checkLength';
+
 export default function randomLocations(coords, usedCoords, length) {
-    const vertOptions = [];
-    const horizOptions = [];
+    const vertOptions = [coords];
+    const horizOptions = [coords];
     for (let i = 1; i < length; i += 1) {
         // check vertical doesn't go off the board and hasnt already been used
         if (
@@ -31,5 +33,13 @@ export default function randomLocations(coords, usedCoords, length) {
             horizOptions.push([coords[0], coords[1] - i]);
         }
     }
-    return { vertOptions, horizOptions };
+    if (vertOptions.length > horizOptions.length) {
+        return checkLength(vertOptions, length);
+    }
+    if (horizOptions.length > vertOptions.length) {
+        return checkLength(horizOptions, length);
+    }
+    const options = [vertOptions, horizOptions];
+    const coinToss = Math.floor(Math.random() * 2);
+    return checkLength(options[coinToss], 2);
 }

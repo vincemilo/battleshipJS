@@ -23,6 +23,10 @@ export default class Gameboard {
         return this.grid;
     }
 
+    getShipLocs() {
+        return this.shipLocations;
+    }
+
     placeShips() {
         const ships = [
             {
@@ -55,9 +59,6 @@ export default class Gameboard {
         ships.forEach((element) => {
             const ship = new Ship(element.name, element.length, element.coords);
             this.ships.push(ship);
-            // console.log(ship.coords);
-            // takes ship coords and applies them to board
-            // Object.keys(ship.coords).forEach((e) => this.occupy(e));
         });
     }
 
