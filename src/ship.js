@@ -1,12 +1,10 @@
-import shipRandomizer from './shipRandomizer';
-
 export default class Ship {
-    constructor(name, length, board, numHits = 0, sunk = false) {
+    constructor(name, length, coords, numHits = 0, sunk = false) {
         this.name = name;
         this.length = length;
         this.numHits = numHits;
         this.sunk = sunk;
-        this.coords = shipRandomizer(length, board);
+        this.coords = coords;
     }
 
     hit() {

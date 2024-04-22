@@ -11,7 +11,7 @@ export default function attack(player1, player2, e) {
         cell = document.getElementById(e.name);
     }
     if (player1.attack(e) === 2) {
-        player2.gameBoard.receiveAttack(e.name);
+        player2.gameBoard.receiveAttack(e.coords);
         cell.style.backgroundColor = 'red';
         status.innerText = 'Hit!';
         const sunk = player2.gameBoard.latestSunk;
@@ -21,6 +21,11 @@ export default function attack(player1, player2, e) {
         }
         if (player2.gameBoard.allSunk) {
             status.innerText += ' Game over!';
+            const main = document.querySelector('main');
+            const newMain = main.cloneNode(true);
+            const content = document.getElementById('content');
+            main.remove();
+            content.appendChild(newMain);
         }
     } else if (player1.attack(e) === 1) {
         status.innerText = 'Already attacked! Miss!';

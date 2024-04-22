@@ -1,5 +1,6 @@
 import createGrid from './createGrid';
 import Ship from './ship';
+import shipRandomizer from './shipRandomizer';
 
 export default class Gameboard {
     constructor() {
@@ -31,27 +32,32 @@ export default class Gameboard {
             {
                 name: 'carrier',
                 length: 5,
+                coords: shipRandomizer(5, this),
             },
             {
                 name: 'battleship',
                 length: 4,
+                coords: shipRandomizer(4, this),
             },
             {
                 name: 'destroyer',
                 length: 3,
+                coords: shipRandomizer(3, this),
             },
             {
                 name: 'submarine',
                 length: 3,
+                coords: shipRandomizer(3, this),
             },
             {
                 name: 'patrol boat',
                 length: 2,
+                coords: shipRandomizer(2, this),
             },
         ];
 
         ships.forEach((element) => {
-            const ship = new Ship(element.name, element.length, this);
+            const ship = new Ship(element.name, element.length, element.coords);
             this.ships.push(ship);
         });
     }

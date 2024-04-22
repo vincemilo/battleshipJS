@@ -7,6 +7,7 @@ function randomValidNum(min, max) {
 }
 
 export default function shipRandomizer(length, board) {
+    const coords = {};
     const usedCoords = board.getShipLocs();
     const coord1 = randomValidNum(0, 9);
     const coord2 = randomValidNum(0, 9);
@@ -15,8 +16,9 @@ export default function shipRandomizer(length, board) {
         if (options.length === length) {
             for (let i = 0; i < options.length; i += 1) {
                 board.occupy(options[i]);
+                coords[options[i]] = null;
             }
-            return options;
+            return coords;
         }
     }
     // run again if valid coords aren't found
