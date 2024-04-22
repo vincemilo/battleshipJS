@@ -9,11 +9,17 @@ export default class Player {
 
     // 3 different returns, miss, hit, or already attacked
     attack(cell) {
-        if (cell.occupied === false) {
+        if (
+            cell.occupied === false &&
+            !(cell.coords in this.gameBoard.missedAttacks)
+        ) {
             this.gameBoard.missedAttacks[cell.coords] = null;
             return 0;
         }
-        if (cell.coords in this.gameBoard.hitAttacks) {
+        if (
+            cell.coords in this.gameBoard.hitAttacks ||
+            cell.coords in this.gameBoard.missedAttacks
+        ) {
             // ensures comp doesn't attack same square twice
             if (this.comp) this.gameBoard.missedAttacks[cell.coords] = null;
             return 1;

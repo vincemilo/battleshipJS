@@ -1,9 +1,12 @@
+import status from './status';
+
 export default function player1grid(player1) {
     const container = document.createElement('div');
     const p1info = document.createElement('div');
-    p1info.innerText = 'Your ships';
+    p1info.innerText = 'Your ships:';
     p1info.className = 'info';
     const p1grid = player1.gameBoard.grid;
+    const statusDiv = status('status2');
 
     const div = document.createElement('div');
     div.className = 'player1-grid';
@@ -20,5 +23,6 @@ export default function player1grid(player1) {
 
     container.appendChild(p1info);
     container.appendChild(div);
+    container.appendChild(statusDiv);
     return container;
 }

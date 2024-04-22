@@ -1,6 +1,5 @@
-export default function status() {
+export default function status(name = 'status') {
     const div = document.createElement('div');
-    div.className = 'status';
-    div.innerText = '(Click location above to attack)';
+    div.className = name;
     return div;
 }
