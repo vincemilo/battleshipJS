@@ -8,8 +8,6 @@ function randomValidNum(min, max) {
 
 export default function shipRandomizer(length, board) {
     const usedCoords = board.getShipLocs();
-    // console.log(usedCoords);
-    // const coords = {};
     const coord1 = randomValidNum(0, 9);
     const coord2 = randomValidNum(0, 9);
     if (!([coord1, coord2] in usedCoords)) {

@@ -1,4 +1,3 @@
-import translateCoords from './translateCoords';
 import generateOptions from './generateOptions';
 
 const prevOptions = {};
@@ -6,8 +5,8 @@ const prevOptions = {};
 export default function checkAdjacent(hitCoords, missCoords) {
     let adjSquare = '';
     hitCoords.forEach((e) => {
-        const translated = translateCoords(e);
-        const options = generateOptions(translated);
+        // const translated = translateCoords(e);
+        const options = generateOptions([Number(e[0]), Number(e[2])]);
         // check if option has already been generated or is a miss
         options.forEach((option) => {
             if (!(option in prevOptions) && !(option in missCoords))

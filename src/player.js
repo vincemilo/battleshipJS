@@ -11,16 +11,15 @@ export default class Player {
     attack(cell) {
         if (cell.occupied === false) {
             this.gameBoard.missedAttacks[cell.coords] = null;
-            // ensures comp doesn't attack same square twice
-            // if (this.comp) this.gameBoard.missedAttacks[cell.coords] = null;
             return 0;
         }
         if (cell.coords in this.gameBoard.hitAttacks) {
-            // if (this.comp) this.gameBoard.missedAttacks[cell.coords] = null;
+            // ensures comp doesn't attack same square twice
+            if (this.comp) this.gameBoard.missedAttacks[cell.coords] = null;
             return 1;
         }
         this.gameBoard.hitAttacks[cell.coords] = null;
-        // if (this.comp) this.gameBoard.missedAttacks[cell.coords] = null;
+        if (this.comp) this.gameBoard.missedAttacks[cell.coords] = null;
         return 2;
     }
 }

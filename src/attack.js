@@ -1,4 +1,4 @@
-// import endTurn from './endTurn';
+import endTurn from './endTurn';
 
 // takes a clicked cell and updates the board and status bar accordingly as well as ends the turn
 export default function attack(player1, player2, e) {
@@ -29,5 +29,5 @@ export default function attack(player1, player2, e) {
         cell.style.backgroundColor = 'white';
     }
 
-    // endTurn(player1, player2);
+    endTurn(player1, player2);
 }
