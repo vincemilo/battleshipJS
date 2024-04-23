@@ -13,7 +13,8 @@ header {
 header,
 .status,
 .info,
-.status2 {
+.status2,
+main {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -2,7 +2,7 @@
 
 Battleship Game using test driven development
 
-Live preview: TBD
+Live preview: https://vincemilo.github.io/battleshipJS/
 
 Assignment: https://www.theodinproject.com/lessons/javascript-battleship
 
@@ -13,6 +13,7 @@ Assignment: https://www.theodinproject.com/lessons/javascript-battleship
 -   Player class takes turns attacking the enemy Gameboard
 -   Computer class takes into account missed attacks and hit attacks and attacks adjacently as appropriate
 -   Human player attacks via click, computer attacks via checking previous hits and misses and attacking adjacently or randomly as appropriate
+-   Uses hash maps to search coords more quickly
 
 ### Process
 
@@ -26,9 +27,10 @@ Assignment: https://www.theodinproject.com/lessons/javascript-battleship
 
 -   Bug where computer kept attacking same target after a miss following a hit fixed by adding hit attacks to previous attacks
 
--   Bug with shipRandomizer that was causing collisions, requiring a refactor of the entire ship placement and targeting system as well as corresponding tests
+-   Bug with shipRandomizer that was causing collisions with random ship replacement, requiring a refactor of the entire ship placement and targeting system as well as corresponding tests
 
 #### To Do
 
 -   Add 2 human player option
 -   Drag and drop placement of ships
+-   Separate out functions more to allow easier testing

@@ -1,5 +1,4 @@
 // import _ from 'lodash';
-import gameLoop from './gameLoop';
 import header from './header';
 import Player from './player';
 import main from './main';
@@ -13,5 +12,3 @@ const body = document.querySelector('body');
 content.appendChild(header());
 content.appendChild(main(player1, player2));
 body.appendChild(content);
-
-// gameLoop(player1, player2);

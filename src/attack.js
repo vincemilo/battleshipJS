@@ -1,4 +1,5 @@
 import endTurn from './endTurn';
+import gameOver from './gameOver';
 
 // takes a clicked cell and updates the board and status bar accordingly as well as ends the turn
 export default function attack(player1, player2, e) {
@@ -32,11 +33,7 @@ export default function attack(player1, player2, e) {
             } else {
                 status.innerText += ' Game over! You win!';
             }
-            const main = document.querySelector('main');
-            const newMain = main.cloneNode(true);
-            const content = document.getElementById('content');
-            main.remove();
-            content.appendChild(newMain);
+            return gameOver();
         }
     } else if (attackStatus === 1) {
         status.innerText = 'Already attacked! Miss!';
@@ -45,5 +42,5 @@ export default function attack(player1, player2, e) {
         cell.style.backgroundColor = 'white';
     }
 
-    endTurn(player1, player2);
+    return endTurn(player1, player2);
 }
